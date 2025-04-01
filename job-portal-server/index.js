@@ -3,12 +3,15 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 3000;
 require("dotenv").config();
+
+app.use(express.json()); // Add this line to parse JSON bodies
+
 // Middleware
 app.use(
   cors({
-    origin: "https://mern-job-portal-website.vercel.app",
-    methods: ["POST", "GET"],
-    credentials: true,
+    origin: "http://localhost:5173", // Allow all origins (for debugging)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
