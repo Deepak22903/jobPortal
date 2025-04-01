@@ -45,8 +45,7 @@ const UpdateJob = () => {
           alert("Job Updated Successfully");
         }
         reset();
-        window.location.href =
-          "https://mern-job-portal-lakshay.vercel.app/my-job";
+        window.location.href = "http://localhost:3000/my-job";
       });
   };
 

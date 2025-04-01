@@ -12,9 +12,7 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://mern-job-portal-website.vercel.app/myJobs/lakshay22dhoundiyal@gmail.com`,
-    )
+    fetch(`http://localhost:3000/myJobs/lakshay22dhoundiyal@gmail.com`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -106,7 +104,7 @@ const MyJobs = () => {
                   <Link to="/post-job">
                     {" "}
                     <button
-                      className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="bg-blue text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
                     >
                       Post a New Job
