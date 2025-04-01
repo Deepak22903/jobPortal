@@ -29,7 +29,7 @@ const JobDetails = () => {
       <PageHeader title={"Single Job Page"} path={"Single Job"} />
       <div className="pt-16">
         <h2>
-          <span className="text-xl font-bold text-blue-500">Job Details: </span>
+          <span className="text-xl font-bold text-blue">Job Details: </span>
           {id}
         </h2>
         <h1>

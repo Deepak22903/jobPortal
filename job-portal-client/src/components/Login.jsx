@@ -14,8 +14,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      {!user && (
+        <button onClick={handleLogin}>Login</button>
+      )}
       const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
+      setUser(result.user); // Update the user state directly
 
       // Get user's name for display
       const userName = user.displayName || user.email.split('@')[0]; // Use display name if available, fallback to email before "@"
