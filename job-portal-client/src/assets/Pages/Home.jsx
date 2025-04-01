@@ -72,6 +72,7 @@ const Home = () => {
   const filteredData = (jobs, selected, query) => {
     let filteredJobs = jobs;
 
+    console.log("Jobs data:", jobs);
     //Filtering Input Items
     if (query) {
       filteredJobs = filteredItems;
@@ -89,14 +90,13 @@ const Home = () => {
           employmentType,
           postingDate,
         }) =>
-          jobLocation.toLowerCase() === selected.toLowerCase() ||
+          jobLocation?.toLowerCase() === selected.toLowerCase() || // ✅ Fix applied here
           parseInt(maxPrice) <= parseInt(selected) ||
           postingDate >= selected ||
           salaryType.toLowerCase() === selected.toLowerCase() ||
           experienceLevel.toLowerCase() === selected.toLowerCase() ||
           employmentType.toLowerCase() === selected.toLowerCase(),
       );
-      console.log(filteredJobs);
     }
 
     // Slice the data based on current page
