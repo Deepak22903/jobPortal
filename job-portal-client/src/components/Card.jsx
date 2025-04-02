@@ -20,14 +20,13 @@ const Card = ({ data }) => {
   return (
     <section className="card">
       <Link
-        to={`http://localhost:3000/job/${_id}`}
+        to={`/job/${_id}`}
         className="flex gap-4 flex-col sm:flex-row items-start"
       >
         <img src={companyLogo} alt="" />
         <div className="">
           <h4 className="text-primary mb-1">{companyName}</h4>
           <h3 className="text-lg font-semibold mb-2">{jobTitle}</h3>
-
           <div className="text-primary/70 text-base flex flex-wrap gap-2 mb-2">
             <span className="flex items-center gap-2">
               <FiMapPin /> {jobLocation}{" "}
@@ -42,8 +41,7 @@ const Card = ({ data }) => {
               <FiCalendar /> {postingDate}{" "}
             </span>
           </div>
-
-          <p className="text-base text-primary/70"> {description} </p>
+          <p className="text-base text-primary/70">{description}</p>
         </div>
       </Link>
     </section>
