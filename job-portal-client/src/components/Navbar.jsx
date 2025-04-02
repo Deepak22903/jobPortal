@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 import LogoutButton from "./LogoutButton"; // Import LogoutButton
 // Import LogoutButton
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const [user, setUser] = useState(null);
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
 
   const navItems = [
     { path: "/", title: "Start a Search" },
@@ -57,16 +73,21 @@ const Navbar = () => {
 
         {/* SIGNUP AND LOGIN BUTTON */}
         <div className="text-base text-primary font-medium space-x-5 hidden lg:block">
-          <Link to="/login" className="py-2 px-5 border rounded">
-            Login
-          </Link>
-          <Link
-            to="/sign-up"
-            className="py-2 px-5 border rounded bg-blue text-white"
-          >
-            Sign up
-          </Link>
-          {/* <Link to = "/LogoutButton" className='py-2 px-5 border rounded bg-blue text-white'>Logout</Link> */}
+          {user ? (
+            <LogoutButton />
+            ) : (
+            <>
+              <Link to="/login" className="py-2 px-5 border rounded">
+                Login
+              </Link>
+              <Link
+                to="/sign-up"
+                className="py-2 px-5 border rounded bg-blue text-white"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
         </div>
 
         {/* MOBILE MENU */}
