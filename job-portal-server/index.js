@@ -80,22 +80,23 @@ async function run() {
 
     // Get Jobs by email
 
-    // This would be in your server's index.js or routes file
     app.get("/myJobs/:email", async (req, res) => {
       try {
         const { email } = req.params;
         const decodedEmail = decodeURIComponent(email);
+        console.log("Looking for jobs with postedBy:", decodedEmail);
 
         const jobs = await jobsCollection
           .find({ postedBy: decodedEmail })
           .toArray();
+
+        console.log("Found jobs:", jobs.length);
         res.send(jobs);
       } catch (err) {
-        console.error(err);
+        console.error("Detailed error in /myJobs/:email:", err);
         res.status(500).send("Server error");
       }
     });
-
     // Delete a Job
     app.delete("/job/:id", async (req, res) => {
       const id = req.params.id;
